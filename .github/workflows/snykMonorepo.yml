@@ -15,9 +15,9 @@ jobs:
          ls -lrt
          echo "----------Authenticating Snyk-----------"
          ./snyk auth ${{secrets.Snyk_token}}
+         echo "----------Snyk Scanning Yarn-----------"
+         ./snyk test --yarn-workspaces --detection-depth=6 -d
          echo "----------Snyk Scanning-----------"
-            ./snyk test --all-projects  -d
-            echo "----------Snyk Scanning Yarn-----------"
-             ./snyk test --yarn-workspaces --detection-depth=6 -d
-             echo "----------Snyk Scanning gradle-----------"
-             ./snyk test --file=build.gradle --all-sub-projects -d
+         ./snyk test --all-projects  -d
+         echo "----------Snyk Scanning gradle-----------"
+         ./snyk test --file=build.gradle --all-sub-projects -d
